@@ -1,0 +1,14 @@
+[submodule "dependencies/glfw"] 
+  path = dependencies/glfw
+  url = git@github.com:glfw/glfw.git
+
+[submodule "dependencies/enet"] 
+  path = dependencies/enet
+  url = git@github.com:lsalzman/enet.git
+
+[submodule "dependencies/protobuf"] 
+  path = dependencies/protobuf
+  url = git@github.com:protocolbuffers/protobuf.git
+[submodule "dependencies/boost"]
+	path = dependencies/boost
+	url = git@github.com:boostorg/boost.git
