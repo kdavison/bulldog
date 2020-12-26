@@ -13,7 +13,6 @@ ExternalProject_Add(
   boost
   PREFIX boost
   SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/boost"
-  GIT_REPOSITORY "git@github.com:boostorg/boost.git"
   GIT_TAG "boost-1.75.0"
   GIT_SUBMODULES_RECURSE TRUE
   GIT_SHALLOW TRUE
@@ -29,13 +28,26 @@ ExternalProject_Add(
 ExternalProject_Add(
   protobuf
   PREFIX protobuf
-  GIT_REPOSITORY "git@github.com:protocolbuffers/protobuf.git"
+  SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/protobuf
   GIT_TAG "v3.14.0"
   GIT_SUBMODULES_RECURSE TRUE
   GIT_SHALLOW TRUE
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/protobuf/autogen.sh && ${CMAKE_CURRENT_SOURCE_DIR}/protobuf/configure --prefix=${CMAKE_INSTALL_PREFIX}
+  BUILD_IN_SOURCE TRUE
+  INSTALL_COMMAND make -j12 install
+)
+
+## libgcrypt
+ExternalProject_Add(
+  libgcrypt
+  PREFIX libgcrypt
+  SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libgcrypt
+  GIT_TAG "libgcrypt-1.8.7"
+  UPDATE_COMMAND ""
+  CONFIGURE_COMMAND ""
+  BUILD_COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/libgcrypt/autogen.sh && ${CMAKE_CURRENT_SOURCE_DIR}/libgcrypt/configure --enable-static --disable-doc --prefix=${CMAKE_INSTALL_PREFIX}
   BUILD_IN_SOURCE TRUE
   INSTALL_COMMAND make -j12 install
 )

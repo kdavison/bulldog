@@ -13,4 +13,6 @@ include(ExternalProject)
 ## DEPENDENCIES
 add_subdirectory(${PROJECT_SOURCE_DIR}/dependencies)
 
-## PROJECTS
+## SERVER
+
+## CLIENT
