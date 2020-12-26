@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package bulldog.network
+
+import "google/protobuf/any.proto";
+
+message Connect {
+
+}
+
+message Disconnect {
+
+}

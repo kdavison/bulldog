@@ -9,6 +9,7 @@ namespace network
 namespace impl
 {
 using namespace std::chrono_literals;
+using hrc = std::chrono::high_resolution_clock;
 
 Server::Server
   : _host(nullptr)
@@ -43,7 +44,8 @@ bool Server::stop() {
   using hrc = std::chrono::high_resolution_clock;
   auto start = hrc::now();
   auto end = hrc::now();
-  while((end-start) < 5000ms) {
+  bool quit = false;
+  for(; (end-start) < 5000ms && quit == false; end = hrc::now()) {
     int32_t res = enet_host_service(_host.get(), &event, 0);
     if(res > 0) {
       switch(event.type) {
@@ -60,11 +62,10 @@ bool Server::stop() {
         break;
       }
     } else if (res < 0) {
-      break;
+      quit = true;
     } else if (_clients.empty()) {
-      break;
+      quit = true;
     }
-    end = hrc::now();
   }
 
   //force disconnect
@@ -95,12 +96,15 @@ Server::peer_t Server::getClient(uint32_t const id) const {
 }
 
 //TODO: Add Timeout, cleanup loop
-std::vector<...> Server::poll() {
+std::vector<...> Server::poll(std::chrono::milliseconds const& timeout = 2ms) {
   std::vector<...> msgs;
   //TODO: guess a better size
   msgs.reserve(10);
   ENetEvent event;
-  while(true) {
+  auto start = hrc::now();
+  auto end = hrc::now();
+  bool quit = false;
+  for(; (end-start) < timeout && quit == false; end = hrc::now()) {
     int32_t rest = enet_host_service(_host.get(), &event, 0);
     if(res > 0) {
       switch(event.type) {
@@ -124,9 +128,9 @@ std::vector<...> Server::poll() {
         break;
       }
     } else if(res < 0) {
-      break;
+      quit = true;
     } else {
-      break;
+      quit = true;
     }
   }
 }

@@ -1,6 +1,8 @@
 #pragma once
-#include <utility/copyable.hpp>
+#include "utility/copyable.hpp"
+#include "network/delivery_type.hpp"
 #include <string>
+#include <chrono>
 #include <cstdint>
 
 namespace bulldog
@@ -18,11 +20,10 @@ public:
   virtual bool disconnect() = 0;
   virtual bool connected() const = 0;
 
-  virtual void send(..., ...) const = 0;
-  virtual ... request(uint32_t const, ...) = 0;
-  virtual std::vector<...> poll() = 0;
+  virtual void send(::bulldog::network::DeliveryType, ...) const = 0;
+  virtual std::vector<...> receive(std::chrono::milliseconds const&) = 0;
 
-  virtual on(uint32_t const, ...) = 0;
+  virtual void on(uint32_t const, ...) = 0;
 };
 }
 }

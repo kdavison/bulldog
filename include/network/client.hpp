@@ -17,11 +17,8 @@ public:
   bool disconnect() override;
   bool connected() const override;
 
-  void send(..., ...) const override;
-  ... request(uint32_t const, ...) override;
-  std::vector<...> poll() override;
-
-  on(uint32_t const, ...) override;
+  void send(::bulldog::network::DeliveryType, ...) const override;
+  std::vector<...> receive(std::chrono::milliseconds const&) override;
 private:
 
 };

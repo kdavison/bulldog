@@ -47,7 +47,7 @@ ExternalProject_Add(
   GIT_TAG "libgcrypt-1.8.7"
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND ""
-  BUILD_COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/libgcrypt/autogen.sh && ${CMAKE_CURRENT_SOURCE_DIR}/libgcrypt/configure --enable-static --disable-doc --prefix=${CMAKE_INSTALL_PREFIX}
+  BUILD_COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/libgcrypt/autogen.sh && ${CMAKE_CURRENT_SOURCE_DIR}/libgcrypt/configure --enable-static --disable-doc --prefix=${CMAKE_INSTALL_PREFIX} --includedir=${CMAKE_INSTALL_PREFIX}/include/gcrypt
   BUILD_IN_SOURCE TRUE
   INSTALL_COMMAND make -j12 install
 )
