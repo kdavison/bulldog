@@ -3,3 +3,5 @@ cmake/*
 
 artifacts
 artifacts/*
+
+dependencies/steamworks/*

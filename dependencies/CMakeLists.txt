@@ -13,9 +13,6 @@ ExternalProject_Add(
   boost
   PREFIX boost
   SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/boost"
-  GIT_TAG "boost-1.75.0"
-  GIT_SUBMODULES_RECURSE TRUE
-  GIT_SHALLOW TRUE
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/boost/bootstrap.sh --with-toolset=clang --prefix=${CMAKE_INSTALL_PREFIX} --with-libraries=program_options,filesystem,log
   BUILD_COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/boost/b2
@@ -29,14 +26,11 @@ ExternalProject_Add(
   protobuf
   PREFIX protobuf
   SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/protobuf
-  GIT_TAG "v3.14.0"
-  GIT_SUBMODULES_RECURSE TRUE
-  GIT_SHALLOW TRUE
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/protobuf/autogen.sh && ${CMAKE_CURRENT_SOURCE_DIR}/protobuf/configure --prefix=${CMAKE_INSTALL_PREFIX}
   BUILD_IN_SOURCE TRUE
-  INSTALL_COMMAND make -j12 install
+  INSTALL_COMMAND $(MAKE) install
 )
 
 ## libgcrypt
@@ -44,10 +38,23 @@ ExternalProject_Add(
   libgcrypt
   PREFIX libgcrypt
   SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libgcrypt
-  GIT_TAG "libgcrypt-1.8.7"
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/libgcrypt/autogen.sh && ${CMAKE_CURRENT_SOURCE_DIR}/libgcrypt/configure --enable-static --disable-doc --prefix=${CMAKE_INSTALL_PREFIX} --includedir=${CMAKE_INSTALL_PREFIX}/include/gcrypt
   BUILD_IN_SOURCE TRUE
-  INSTALL_COMMAND make -j12 install
+  INSTALL_COMMAND $(MAKE) install
+)
+
+## steamworks
+ExternalProject_Add(
+  steamworks
+  PREFIX steamworks
+  SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/steamworks
+  URL https://partner.steamgames.com/downloads/steamworks_sdk_150.zip
+  URL_HASH SHA256=5402cb9f93907d3235fd7388e83ef78788e3cad0b19e4687b8b956643495149c
+  UPDATE_COMMAND ""
+  CONFIGURE_COMMAND ""
+  BUILD_COMMAND ""
+  INSTALL_COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_INSTALL_PREFIX}/include/steamworks
+    COMMAND ${CMAKE_COMMAND} -E echo af
 )
