@@ -56,5 +56,12 @@ ExternalProject_Add(
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ""
   INSTALL_COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_INSTALL_PREFIX}/include/steamworks
-    COMMAND ${CMAKE_COMMAND} -E echo af
+)
+file(
+  GLOB STEAMWORKS_HEADERS
+  "${CMAKE_CURRENT_SOURCE_DIR}/steamworks/public/steam/*.h"
+)
+file(
+  COPY ${STEAMWORKS_HEADERS}
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/include/steamworks
 )
