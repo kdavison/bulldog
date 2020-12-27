@@ -12,3 +12,6 @@
 [submodule "dependencies/libgcrypt"]
 	path = dependencies/libgcrypt
 	url = git@github.com:gpg/libgcrypt.git
+[submodule "dependencies/enet"]
+	path = dependencies/enet
+	url = git@github.com:kdavison/enet.git
