@@ -15,3 +15,6 @@
 [submodule "dependencies/enet"]
 	path = dependencies/enet
 	url = git@github.com:kdavison/enet.git
+[submodule "dependencies/cpython"]
+	path = dependencies/cpython
+	url = git@github.com:python/cpython.git
