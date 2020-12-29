@@ -58,22 +58,11 @@ ExternalProject_Add(
   BUILD_COMMAND ""
   INSTALL_COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_INSTALL_PREFIX}/include/steamworks
 )
-file(
-  GLOB STEAMWORKS_HEADERS
-  ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/steamworks/public/steam/*.h
-)
-file(
-  COPY ${STEAMWORKS_HEADERS}
-  DESTINATION ${CMAKE_INSTALL_PREFIX}/includes/steamworks
-)
-file(
-  GLOB STEAMWORKS_LIBRARIES
-  ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/steamworks/public/steam/lib/linux64/*.so
-  ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/steamworks/redistributable_bin/linux64/*.so
-)
-file(
-  COPY ${STEAMWORKS_LIBRARIES}
-  DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+
+install(
+  DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/steamworks/public/steam/
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/include/steamworks
+  FILES_MATCHING PATTERN "*.h"
 )
 
 ## ENTT
