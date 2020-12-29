@@ -50,11 +50,31 @@ ExternalProject_Add(
   steamworks
   PREFIX steamworks
   SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/steamworks
+  DOWNLOAD_COMMAND wget --no-cache https://partner.steamgames.com/downloads/steamworks_sdk_150.zip
   URL https://partner.steamgames.com/downloads/steamworks_sdk_150.zip
   URL_HASH SHA256=5402cb9f93907d3235fd7388e83ef78788e3cad0b19e4687b8b956643495149c
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ""
   INSTALL_COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_INSTALL_PREFIX}/include/steamworks
-    COMMAND ${CMAKE_COMMAND} -E echo af
 )
+file(
+  GLOB STEAMWORKS_HEADERS
+  ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/steamworks/public/steam/*.h
+)
+file(
+  COPY ${STEAMWORKS_HEADERS}
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/includes/steamworks
+)
+file(
+  GLOB STEAMWORKS_LIBRARIES
+  ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/steamworks/public/steam/lib/linux64/*.so
+  ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/steamworks/redistributable_bin/linux64/*.so
+)
+file(
+  COPY ${STEAMWORKS_LIBRARIES}
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+)
+
+## ENTT
+add_subdirectory(entt)
