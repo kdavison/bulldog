@@ -15,3 +15,6 @@
 [submodule "dependencies/enet"]
 	path = dependencies/enet
 	url = git@github.com:kdavison/enet.git
+[submodule "dependencies/entt"]
+	path = dependencies/entt
+	url = git@github.com:skypjack/entt.git
