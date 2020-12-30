@@ -65,5 +65,11 @@ install(
   FILES_MATCHING PATTERN "*.h"
 )
 
+install(
+  DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/steamworks/redistributable_bin/linux64/
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+  FILES_MATCHING PATTERN "*.so"
+)
+
 ## ENTT
 add_subdirectory(entt)
