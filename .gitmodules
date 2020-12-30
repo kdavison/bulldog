@@ -1,8 +1,8 @@
-[submodule "dependencies/glfw"] 
+[submodule "dependencies/glfw"]
   path = dependencies/glfw
   url = git@github.com:glfw/glfw.git
 
-[submodule "dependencies/protobuf"] 
+[submodule "dependencies/protobuf"]
   path = dependencies/protobuf
   url = git@github.com:protocolbuffers/protobuf.git
 
@@ -18,3 +18,6 @@
 [submodule "dependencies/cpython"]
 	path = dependencies/cpython
 	url = git@github.com:python/cpython.git
+[submodule "dependencies/entt"]
+	path = dependencies/entt
+	url = git@github.com:skypjack/entt.git
