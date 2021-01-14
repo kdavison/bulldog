@@ -12,6 +12,7 @@ protected:
 
 template<>
 struct copyable<false> {
+  copyable() = default;
   copyable(copyable const&) = delete;
   copyable& operator=(copyable const&) = delete;
 protected:

@@ -27,6 +27,7 @@ set(
 set(
   SERVER_LIBRARIES
   steam_api
+  pthread
 )
 add_executable(
   BulldogServer
@@ -35,6 +36,10 @@ add_executable(
 target_link_libraries(
   BulldogServer
   ${SERVER_LIBRARIES}
+)
+add_dependencies(
+  BulldogServer
+  steamworks
 )
 
 ## CLIENT
@@ -45,6 +50,7 @@ set(
 set(
   CLIENT_LIBRARIES
   steam_api
+  pthread
 )
 add_executable(
   BulldogClient
@@ -53,6 +59,10 @@ add_executable(
 target_link_libraries(
   BulldogClient
   ${CLIENT_LIBRARIES}
+)
+add_dependencies(
+  BulldogClient
+  steamworks
 )
 
 ## INSTALL
