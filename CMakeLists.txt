@@ -42,5 +42,21 @@ FetchContent_Declare(
   SOURCE_DIR ./dependencies/entt
 )
 
-FetchContent_MakeAvailable(SDL3 glm entt)
+# ---------------------------------
+# spdlog Dependency via FetchContent
+# ---------------------------------
+FetchContent_Declare(
+  spdlog
+  SOURCE_DIR ./dependencies/spdlog
+)
+
+# ---------------------------------
+# spdlog Dependency via FetchContent
+# ---------------------------------
+FetchContent_Declare(
+  spdlog
+  SOURCE_DIR ./dependencies/imgui
+)
+
+FetchContent_MakeAvailable(SDL3 glm entt spdlog imgui)
 

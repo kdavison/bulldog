@@ -14,3 +14,7 @@
 	path = dependencies/spdlog
 	url = git@github.com:gabime/spdlog.git
 	shallow = true
+[submodule "dependencies/imgui"]
+	path = dependencies/imgui
+	url = git@github.com:ocornut/imgui.git
+	shallow = true
