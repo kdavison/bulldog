@@ -1,7 +1,13 @@
-cmake
-cmake/*
-
 artifacts
 artifacts/*
 
 dependencies/steamworks/*
+
+CMakeFiles
+CMakeFiles/*
+
+CMakeCache.txt
+Makefile
+_deps
+_deps/*
+cmake_install.cmake
