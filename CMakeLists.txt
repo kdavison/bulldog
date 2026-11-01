@@ -31,7 +31,7 @@ set(GLM_BUILD_TESTS OFF CACHE BOOL "Disable GLM tests" FORCE)
 
 FetchContent_Declare(
     glm
-    SOURCE_DIR ./dependencies/GLM
+    SOURCE_DIR ./dependencies/glm
 )
 
 # ---------------------------------

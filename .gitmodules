@@ -10,3 +10,7 @@
 	path = dependencies/glm
 	url = git@github.com:g-truc/glm.git
 	shallow = true
+[submodule "dependencies/spdlog"]
+	path = dependencies/spdlog
+	url = git@github.com:gabime/spdlog.git
+	shallow = true
