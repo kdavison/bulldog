@@ -1,73 +1,34 @@
-cmake_minimum_required(VERSION 3.19)
+cmake_minimum_required(VERSION 3.30)
 
-project(bulldog)
+project(bulldog CXX)
 
-## SETUP
-SET (CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/artifacts")
-SET (CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
-SET (CMAKE_USER_MAKE_RULES_OVERRIDE "${PROJECT_SOURCE_DIR}/ClangOverrides.txt")
-SET (CMAKE_TOOLCHAIN_PREFIX "llvm-")
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-## MODULES
-include(ExternalProject)
+include(FetchContent)
 
-## DEPENDENCIES
-add_subdirectory(${PROJECT_SOURCE_DIR}/dependencies)
-
-link_directories(${CMAKE_INSTALL_PREFIX}/lib)
-include_directories(
-  ${CMAKE_INSTALL_PREFIX}/include
-  ${PROJECT_SOURCE_DIR}/include
-)
-## SERVER
-set(
-  SERVER_SOURCES
-  source/server.cc
-)
-set(
-  SERVER_LIBRARIES
-  steam_api
-  pthread
-)
-add_executable(
-  BulldogServer
-  ${SERVER_SOURCES}
-)
-target_link_libraries(
-  BulldogServer
-  ${SERVER_LIBRARIES}
-)
-add_dependencies(
-  BulldogServer
-  steamworks
+# ---------------------------------
+# SDL3 Dependency
+# ---------------------------------
+FetchContent_Declare(
+  SDL3
+  GIT_REPOSITORY https://github.com/libsdl-org/SDL.git
+  GIT_TAG        release-3.2.18
+  GIT_SHALLOW    TRUE
 )
 
-## CLIENT
-set(
-  CLIENT_SOURCES
-  source/client.cc
-)
-set(
-  CLIENT_LIBRARIES
-  steam_api
-  pthread
-)
-add_executable(
-  BulldogClient
-  ${CLIENT_SOURCES}
-)
-target_link_libraries(
-  BulldogClient
-  ${CLIENT_LIBRARIES}
-)
-add_dependencies(
-  BulldogClient
-  steamworks
+
+# ---------------------------------
+# GLM Dependency via FetchContent
+# ---------------------------------
+set(GLM_BUILD_TESTS OFF CACHE BOOL "Disable GLM tests" FORCE)
+
+FetchContent_Declare(
+    glm
+    GIT_REPOSITORY https://github.com/g-truc/glm.git
+    GIT_TAG        1.0.1
+    GIT_SHALLOW    TRUE
 )
 
-## INSTALL
-install(
-  TARGETS BulldogClient BulldogServer
-  RUNTIME
-  DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
-)
+FetchContent_MakeAvailable(SDL3 glm)
+
