@@ -1,6 +1,12 @@
 [submodule "dependencies/entt"]
 	path = dependencies/entt
 	url = git@github.com:skypjack/entt.git
+	shallow = true
 [submodule "dependencies/SDL"]
 	path = dependencies/SDL
 	url = git@github.com:libsdl-org/SDL.git
+	shallow = true
+[submodule "dependencies/glm"]
+	path = dependencies/glm
+	url = git@github.com:g-truc/glm.git
+	shallow = true

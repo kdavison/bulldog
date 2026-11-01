@@ -1,20 +1,26 @@
-cmake_minimum_required(VERSION 3.30)
+cmake_minimum_required(VERSION 3.28)
 
 project(bulldog CXX)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(CMAKE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/artifacts)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/artifacts)
+set(CMAKE_PDB_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/artifacts)
+
 include(FetchContent)
 
 # ---------------------------------
 # SDL3 Dependency
 # ---------------------------------
+set(SDL_TEST OFF CACHE BOOL "Disable SDL test suite" FORCE)
+set(SDL_SHARED ON CACHE BOOL "Build SDL shared library" FORCE)
+set(SDL_STATIC OFF CACHE BOOL "Build SDL static library" FORCE)
+
 FetchContent_Declare(
   SDL3
-  GIT_REPOSITORY https://github.com/libsdl-org/SDL.git
-  GIT_TAG        release-3.2.18
-  GIT_SHALLOW    TRUE
+  SOURCE_DIR ./dependencies/SDL
 )
 
 
@@ -25,10 +31,16 @@ set(GLM_BUILD_TESTS OFF CACHE BOOL "Disable GLM tests" FORCE)
 
 FetchContent_Declare(
     glm
-    GIT_REPOSITORY https://github.com/g-truc/glm.git
-    GIT_TAG        1.0.1
-    GIT_SHALLOW    TRUE
+    SOURCE_DIR ./dependencies/GLM
 )
 
-FetchContent_MakeAvailable(SDL3 glm)
+# ---------------------------------
+# entt Dependency via FetchContent
+# ---------------------------------
+FetchContent_Declare(
+  entt
+  SOURCE_DIR ./dependencies/entt
+)
+
+FetchContent_MakeAvailable(SDL3 glm entt)
 
