@@ -11,3 +11,6 @@ Makefile
 _deps
 _deps/*
 cmake_install.cmake
+cmake/
+cmake/*
+cpm-package-lock.cmake

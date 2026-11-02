@@ -9,54 +9,10 @@ set(CMAKE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/artifacts)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/artifacts)
 set(CMAKE_PDB_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/artifacts)
 
-include(FetchContent)
-
-# ---------------------------------
-# SDL3 Dependency
-# ---------------------------------
-set(SDL_TEST OFF CACHE BOOL "Disable SDL test suite" FORCE)
-set(SDL_SHARED ON CACHE BOOL "Build SDL shared library" FORCE)
-set(SDL_STATIC OFF CACHE BOOL "Build SDL static library" FORCE)
-
-FetchContent_Declare(
-  SDL3
-  SOURCE_DIR ./dependencies/SDL
+file(
+        DOWNLOAD
+        https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.43.2/CPM.cmake
+        ${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake
+        EXPECTED_HASH SHA256=49a3bef91ceb65bb66d57255e12d1ffd22abc2f6408fa9fe4534c544a2f232aa
 )
-
-
-# ---------------------------------
-# GLM Dependency via FetchContent
-# ---------------------------------
-set(GLM_BUILD_TESTS OFF CACHE BOOL "Disable GLM tests" FORCE)
-
-FetchContent_Declare(
-    glm
-    SOURCE_DIR ./dependencies/glm
-)
-
-# ---------------------------------
-# entt Dependency via FetchContent
-# ---------------------------------
-FetchContent_Declare(
-  entt
-  SOURCE_DIR ./dependencies/entt
-)
-
-# ---------------------------------
-# spdlog Dependency via FetchContent
-# ---------------------------------
-FetchContent_Declare(
-  spdlog
-  SOURCE_DIR ./dependencies/spdlog
-)
-
-# ---------------------------------
-# spdlog Dependency via FetchContent
-# ---------------------------------
-FetchContent_Declare(
-  spdlog
-  SOURCE_DIR ./dependencies/imgui
-)
-
-FetchContent_MakeAvailable(SDL3 glm entt spdlog imgui)
-
+include(${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)
